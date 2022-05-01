@@ -12,8 +12,10 @@
  * 
  */
 function getSeason(date) {
-  if (!isNaN(date)){  
-    let month = date.getMonth();
+  if (isNaN(date)){  
+    return ("Invalid date!"); 
+} else if (date) {
+  let month = date.getMonth();
     let season;
     if (month == "0" || month == "1" || month == "11"){
       season = "winter";
@@ -25,7 +27,7 @@ function getSeason(date) {
       season = "autumn";
     }
     return season;
-} else {return ("Invalid date!");}
+  } else {return ('Unable to determine the time of year!')}
 }
 
 module.exports = {

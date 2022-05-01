@@ -16,16 +16,14 @@
 function createDreamTeam(members) {
   if (Symbol.iterator in Object(members)){
     let secretName = [];
-    for (let member of members){
+    members.forEach( (member) => {
       if (typeof member == "string"){
-        let memberTrim =  member.trim().toUpperCase();
-        secretName.push(memberTrim.charAt(0));
+        member =  member.trim().toUpperCase();
+        secretName.push(member.charAt(0));
     };
-  }
-   let sorted = secretName.sort();
-   return sorted.join('');
-  } else {return false;}
-
+  });
+   return secretName.sort().join('');
+  } else { return false; }
 };
 
 module.exports = {
