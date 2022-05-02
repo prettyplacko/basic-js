@@ -20,13 +20,10 @@ const { NotImplementedError } = require('../extensions/index.js');
     transArr.push(e);
   });
   transArr.forEach((x)=>{
-    if (transArr.indexOf(x) == 0 &&  x == '--discard-prev'){
+    if (transArr.indexOf(x) == 0 &&  x == '--discard-prev' || transArr.indexOf(x) == 0 &&  x == '--double-prev'){
       transArr.splice(transArr.indexOf(x), 1);
-    } else if (transArr.indexOf(x) == 0 &&  x == '--double-prev'){
-      transArr.splice(transArr.indexOf(x), 1);
-    } else if (transArr.indexOf(x) == transArr.length-1 &&  x == '--discard-next'){
-      transArr.splice(transArr.indexOf(x), 1);
-    } else if (transArr.indexOf(x) == transArr.length-1 &&  x == '--double-next'){
+    } else if (
+      transArr.indexOf(x) == transArr.length-1 &&  x == '--discard-next' || transArr.indexOf(x) == transArr.length-1 &&  x == '--double-next'){
       transArr.splice(transArr.indexOf(x), 1);
     } else if ( x == '--discard-next'){
       transArr.splice(transArr.indexOf(x), 2);
