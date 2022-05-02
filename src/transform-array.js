@@ -13,9 +13,33 @@ const { NotImplementedError } = require('../extensions/index.js');
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  * 
  */
-function transform(/* arr */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+ function transform(arr) {
+  if (Array.isArray(arr)){
+  let transArr = [];
+    arr.forEach((e)=>{
+    transArr.push(e);
+  });
+  transArr.forEach((x)=>{
+    if (transArr.indexOf(x) == 0 &&  x == '--discard-prev'){
+      transArr.splice(transArr.indexOf(x), 1);
+    } else if (transArr.indexOf(x) == 0 &&  x == '--double-prev'){
+      transArr.splice(transArr.indexOf(x), 1);
+    } else if (transArr.indexOf(x) == transArr.length-1 &&  x == '--discard-next'){
+      transArr.splice(transArr.indexOf(x), 1);
+    } else if (transArr.indexOf(x) == transArr.length-1 &&  x == '--double-next'){
+      transArr.splice(transArr.indexOf(x), 1);
+    } else if ( x == '--discard-next'){
+      transArr.splice(transArr.indexOf(x), 2);
+    } else if ( x == '--discard-prev'){
+      transArr.splice(transArr.indexOf(x)-1, 2);
+    } else if ( x == '--double-next'){
+      transArr.splice(transArr.indexOf(x), 1, transArr[transArr.indexOf(x)+1]);
+    } else if ( x == '--double-prev'){
+      transArr.splice(transArr.indexOf(x), 1, transArr[transArr.indexOf(x)-1]);
+    };
+  });
+  return transArr;
+} else { return ('\'arr\' parameter must be an instance of the Array!'); }
 }
 
 module.exports = {
